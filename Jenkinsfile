@@ -11,7 +11,7 @@ pipeline {
             steps {
                 dir("ecs-cluster") {
                     sh 'terraform init'
-                    sh "terraform plan -var 'image_tag=${params.IMAGE_TAG}' -auto-approve"
+                    sh "terraform plan -var 'image_tag=${params.IMAGE_TAG}' "
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
                 script {
                     dir("ecs-cluster") {
                       echo "Running terraform apply"
-                        sh "terraform apply -var 'image_tag=${params.IMAGE_TAG}' -auto-approve"
+                        sh "terraform apply -var 'image_tag=${params.IMAGE_TAG}' --auto-approve"
                     }  
                 }  
             }
