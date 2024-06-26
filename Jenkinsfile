@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -9,7 +8,7 @@ pipeline {
     options {
         ansiColor('xterm')
     }
-    
+
     stages {
         stage('Plan') {
             steps {

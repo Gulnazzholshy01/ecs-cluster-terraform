@@ -55,7 +55,7 @@ variable "ecs_task_deployment_minimum_healthy_percent" {
 
 variable "ecs_task_deployment_maximum_percent" {
   description = "How many additional tasks are allowed to run (in percent) while a deployment is executed"
-  default     = 100
+  default     = 200
   type        = number
 }
 
