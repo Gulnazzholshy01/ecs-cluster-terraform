@@ -6,6 +6,10 @@ pipeline {
         string(name: 'IMAGE_TAG', defaultValue: '', description: 'Image tag to deploy')
     }
 
+    options {
+        ansiColor('xterm')
+    }
+    
     stages {
         stage('Plan') {
             steps {
