@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Plan') {
             steps {
-                dir("ec2-terraform") {
+                dir("ecs-cluster") {
                     sh 'terraform init'
                     sh "terraform plan -var 'image_tag=${params.IMAGE_TAG}' -auto-approve"
                 }
@@ -19,7 +19,7 @@ pipeline {
         stage('Apply') {
             steps {
                 script {
-                    dir("ec2-terraform") {
+                    dir("ecs-cluster") {
                       echo "Running terraform apply"
                         sh "terraform apply -var 'image_tag=${params.IMAGE_TAG}' -auto-approve"
                     }  
@@ -27,7 +27,7 @@ pipeline {
             }
         }
     }
-    
+
     post('Post Actions') {
        always {
            echo '### Clean workspace ###'
