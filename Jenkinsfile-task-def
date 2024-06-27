@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'IMAGE_TAG', defaultValue: 'latest', description: 'Image tag to deploy')
+        string(name: 'IMAGE_TAG', defaultValue: '', description: 'Image tag to deploy')
     }
 
     options {
@@ -14,7 +14,7 @@ pipeline {
             steps {
                 dir("ecs-cluster") {
                     sh 'terraform init'
-                    sh "terraform plan -var 'image_tag=${params.IMAGE_TAG}' "
+                    sh "terraform plan -target=aws_ecs_task_definition.default -var 'image_tag=${params.IMAGE_TAG}' "
                 }
             }
         }
@@ -24,7 +24,7 @@ pipeline {
                 script {
                     dir("ecs-cluster") {
                       echo "Running terraform apply"
-                        sh "terraform apply -var 'image_tag=${params.IMAGE_TAG}' --auto-approve"
+                        sh "terraform apply  -target=aws_ecs_task_definition.default -var 'image_tag=${params.IMAGE_TAG}' --auto-approve"
                     }  
                 }  
             }
