@@ -24,7 +24,7 @@ pipeline {
                 script {
                     dir("ecs-cluster") {
                       echo "Running terraform apply"
-                        sh "terraform apply -var 'image_tag=${params.IMAGE_TAG}' --auto-approve"
+                        sh "terraform destroy -var 'image_tag=${params.IMAGE_TAG}' --auto-approve"
                     }  
                 }  
             }
